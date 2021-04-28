@@ -45,16 +45,14 @@
   <ItemGroup>
     <Compile Include="BinarisKeresofa.cs" />
     <Compile Include="CPU.cs" />
-    <Compile Include="ForditvaRendezettLancoltLista.cs" />
-    <Compile Include="HDMIIO.cs" />
-    <Compile Include="IFeladat.cs" />
-    <Compile Include="IOFeladat.cs" />
-    <Compile Include="MerevlemezIO.cs" />
-    <Compile Include="OptimalisReszmegoldas.cs" />
+    <Compile Include="Feladatok\HDMI_IO.cs" />
+    <Compile Include="Feladatok\IFeladat.cs" />
+    <Compile Include="Feladatok\IOFeladat.cs" />
+    <Compile Include="Feladatok\MerevlemezIO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SzamitasiFeladat.cs" />
-    <Compile Include="TulNagyFeladatKivetel.cs" />
+    <Compile Include="Feladatok\SzamitasiFeladat.cs" />
+    <Compile Include="Szimulacio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

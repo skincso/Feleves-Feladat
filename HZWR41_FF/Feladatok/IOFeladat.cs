@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZWR41_FF
+namespace HZWR41_FF.Feladatok
 {
-    class SzamitasiFeladat : IFeladat
+    class IOFeladat : IFeladat
     {
         public int Prioritas { get; }
         public int Idoigeny { get; }
-        public bool Elvegezve { get; set; }
+        public bool Elvegezve{ get; set; }
         public int HanySzimulaciosKorOtaEl { get; set; }
-        public SzamitasiFeladat(int prioritas, int idoigeny)
+        public IOFeladat(int prioritas, int idoigeny)
         {
             Prioritas = prioritas;
             Idoigeny = idoigeny;
@@ -21,11 +21,11 @@ namespace HZWR41_FF
         }
 
         public event FeladatUtemezesKezelo FeladatBeutemezve;
-        public int Compare(IFeladat x, IFeladat y)
-        // x < y ->  < 0
-        // x = y -> 0
-        // x > y -> > 0
-
+        public int Compare(IFeladat x, IFeladat y) 
+            // x < y ->  < 0
+            // x = y -> 0
+            // x > y -> > 0
+ 
         {
             if (x.HanySzimulaciosKorOtaEl < y.HanySzimulaciosKorOtaEl)
             {
@@ -37,9 +37,10 @@ namespace HZWR41_FF
             }
             else if (x.Prioritas < y.Prioritas) // ha egyenlő korúak
             {
-                return -1;
+                return 1;
             }
-            else return 1;
+            else return -1;
+
         }
     }
 }

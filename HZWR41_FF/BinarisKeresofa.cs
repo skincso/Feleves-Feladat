@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HZWR41_FF.Feladatok;
 
 namespace HZWR41_FF
 {
@@ -19,7 +20,6 @@ namespace HZWR41_FF
                 this.Tartalom = tartalom;
                 Kulcs = kulcs;
             }
-
         }
 
         FaElem gyoker;
@@ -28,7 +28,6 @@ namespace HZWR41_FF
         {
             _Beszuras(ref gyoker, tartalom, kulcs);
         }
-
         void _Beszuras(ref FaElem p, IFeladat tartalom, int kulcs)
         {
             if (p == null)
@@ -44,12 +43,10 @@ namespace HZWR41_FF
                 _Beszuras(ref p.jobb, tartalom, kulcs);
             }
         }
-
         public IFeladat Kereses(int kulcs)
         {
             return _Kereses(gyoker, kulcs);
         }
-
         IFeladat _Kereses(FaElem p, int kulcs)
         {
             if (p != null)
@@ -72,12 +69,10 @@ namespace HZWR41_FF
                 throw new ArgumentException("Nincs ilyen prioritasu elem");
             }
         }
-
         public void Torles(int kulcs)
         {
             _Torles(ref gyoker, kulcs);
         }
-
         void _Torles(ref FaElem p, int kulcs)
         {
             if (p != null)
@@ -105,7 +100,6 @@ namespace HZWR41_FF
                 throw new ArgumentException("Nincs ilyen prioritasu feladat");
             }
         }
-
         void _TorlesKetGyerek(FaElem e, ref FaElem r) // e -> p, r -> p.bal
         {
             if (r.jobb != null)

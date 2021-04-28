@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZWR41_FF
+namespace HZWR41_FF.Feladatok
 {
     class MerevlemezIO : IOFeladat
     {

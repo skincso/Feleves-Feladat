@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZWR41_FF
+namespace HZWR41_FF.Feladatok
 {
-    class TulNagyFeladatKivetel : Exception
+    class HDMI_IO : IOFeladat
     {
-        public TulNagyFeladatKivetel(string message) : base(message)
+        public HDMI_IO(int prioritas, int idoigeny) : base(prioritas, idoigeny)
         {
         }
     }
