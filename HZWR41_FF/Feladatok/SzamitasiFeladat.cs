@@ -21,25 +21,11 @@ namespace HZWR41_FF.Feladatok
         }
 
         public event FeladatUtemezesKezelo FeladatBeutemezve;
-        public int Compare(IFeladat x, IFeladat y)
-        // x < y ->  < 0
-        // x = y -> 0
-        // x > y -> > 0
 
+        public void FeladatElvegzes()
         {
-            if (x.HanySzimulaciosKorOtaEl < y.HanySzimulaciosKorOtaEl)
-            {
-                return -1;
-            }
-            else if (x.HanySzimulaciosKorOtaEl > y.HanySzimulaciosKorOtaEl)
-            {
-                return 1;
-            }
-            else if (x.Prioritas < y.Prioritas) // ha egyenlő korúak
-            {
-                return -1;
-            }
-            else return 1;
+            FeladatBeutemezve?.Invoke(this);
+            Elvegezve = true;
         }
     }
 }

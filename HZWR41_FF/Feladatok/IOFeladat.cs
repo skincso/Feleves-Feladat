@@ -12,6 +12,7 @@ namespace HZWR41_FF.Feladatok
         public int Idoigeny { get; }
         public bool Elvegezve{ get; set; }
         public int HanySzimulaciosKorOtaEl { get; set; }
+
         public IOFeladat(int prioritas, int idoigeny)
         {
             Prioritas = prioritas;
@@ -21,26 +22,11 @@ namespace HZWR41_FF.Feladatok
         }
 
         public event FeladatUtemezesKezelo FeladatBeutemezve;
-        public int Compare(IFeladat x, IFeladat y) 
-            // x < y ->  < 0
-            // x = y -> 0
-            // x > y -> > 0
- 
-        {
-            if (x.HanySzimulaciosKorOtaEl < y.HanySzimulaciosKorOtaEl)
-            {
-                return -1;
-            }
-            else if (x.HanySzimulaciosKorOtaEl > y.HanySzimulaciosKorOtaEl)
-            {
-                return 1;
-            }
-            else if (x.Prioritas < y.Prioritas) // ha egyenlő korúak
-            {
-                return 1;
-            }
-            else return -1;
 
+        public void FeladatElvegzes()
+        {
+            FeladatBeutemezve?.Invoke(this);
+            Elvegezve = true;
         }
     }
 }

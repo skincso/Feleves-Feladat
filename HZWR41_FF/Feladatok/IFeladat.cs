@@ -4,12 +4,13 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HZWR41_FF;
 
 namespace HZWR41_FF.Feladatok
 {
-    delegate void FeladatUtemezesKezelo();
+    public delegate void FeladatUtemezesKezelo(IFeladat feladat);
 
-    interface IFeladat : IComparer<IFeladat>
+    public interface IFeladat
     {
         int Prioritas { get; }
         int Idoigeny { get; }
@@ -18,8 +19,7 @@ namespace HZWR41_FF.Feladatok
 
         event FeladatUtemezesKezelo FeladatBeutemezve;
 
-        //int IComparer.Compare(IFeladat x, IFeladat y);
-
+        void FeladatElvegzes();
 
     }
 

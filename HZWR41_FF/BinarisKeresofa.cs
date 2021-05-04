@@ -17,7 +17,7 @@ namespace HZWR41_FF
             public FaElem jobb;
             public FaElem(IFeladat tartalom, int kulcs)
             {
-                this.Tartalom = tartalom;
+                Tartalom = tartalom;
                 Kulcs = kulcs;
             }
         }
@@ -112,6 +112,18 @@ namespace HZWR41_FF
                 e.Kulcs = r.Kulcs;
                 r = r.bal;
             }
+        }
+
+        public void InorderBejaras(FeladatVegrehajtasKezelo metodus)
+        {
+            _InorderBejaras(gyoker, metodus);
+        }
+
+        void _InorderBejaras(FaElem aktualis, FeladatVegrehajtasKezelo metodus)
+        {
+            _InorderBejaras(aktualis.bal, metodus);
+            metodus?.Invoke(aktualis.Tartalom);
+            _InorderBejaras(aktualis.jobb, metodus);
         }
     }
 }
