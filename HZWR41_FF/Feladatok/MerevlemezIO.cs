@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace HZWR41_FF.Feladatok
 {
-    class MerevlemezIO : IOFeladat
+    public class MerevlemezIO : IOFeladat
     {
-        public MerevlemezIO(int prioritas, int idoigeny) : base(prioritas, idoigeny)
+        public MerevlemezIO(int prioritas, int idoigeny, int hanySzimulaciosKorOtaEl) : base(prioritas, idoigeny, hanySzimulaciosKorOtaEl)
         {
+        }
+        public override event FeladatUtemezesKezelo FeladatBeutemezve;
+
+        public override void FeladatElvegzes()
+        {
+            FeladatBeutemezve?.Invoke($"Merevlemez IO feladat beütemezve, időigény: {Idoigeny}, prioritás: {Prioritas}, kor: {HanySzimulaciosKorOtaEl}");
+            Elvegezve = true;
         }
 
     }

@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace HZWR41_FF.Feladatok
 {
-    class SzamitasiFeladat : IFeladat
+    public class SzamitasiFeladat : IFeladat
     {
         public int Prioritas { get; }
         public int Idoigeny { get; }
         public bool Elvegezve { get; set; }
         public int HanySzimulaciosKorOtaEl { get; set; }
-        public SzamitasiFeladat(int prioritas, int idoigeny)
+        public SzamitasiFeladat(int prioritas, int idoigeny, int hanySzimulaciosKorOtaEl)
         {
             Prioritas = prioritas;
             Idoigeny = idoigeny;
             Elvegezve = false;
-            HanySzimulaciosKorOtaEl = 0;
+            HanySzimulaciosKorOtaEl = hanySzimulaciosKorOtaEl;
         }
 
         public event FeladatUtemezesKezelo FeladatBeutemezve;
 
         public void FeladatElvegzes()
         {
-            FeladatBeutemezve?.Invoke(this);
+            FeladatBeutemezve?.Invoke($"Számítási feladat beütemezve, időigény: {Idoigeny}, prioritás: {Prioritas}, kor: {HanySzimulaciosKorOtaEl}");
             Elvegezve = true;
         }
     }

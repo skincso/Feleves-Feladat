@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -13,12 +13,12 @@ namespace HZWR41_FF
     class CPU
     {
         BinarisKeresofa aktualisFeladatok; //adott korben elvegzendo, prioritas szerint rendezve
-        int idokapacitas;
+        public int Idokapacitas { get; }
 
 
         public CPU()
         {
-            idokapacitas = 10;
+            Idokapacitas = 10;
         }
 
         public void FeladatValasztas(List<IFeladat> feladatok)
@@ -116,11 +116,12 @@ namespace HZWR41_FF
             int maxIndex = -1; // a kiválasztott feladat összeállítás
             int maxIdoigeny = -1; // megoldasokTomb[maxIndex] feladatok össz időigénye
             int maxKor = -1; // megoldasokTomb[maxIndex] feladatok közül a legidősebb
-            for (int i = 0; i < megoldasokTomb.Length; i++)
+
+            for (int i = 0; i < megoldasokTomb.Length; i++) // lehetséges megoldások
             {
                 int idoigeny = 0;
                 int kor = -1;
-                for (int j = 0; j < megoldasokTomb[i].Length; j++)
+                for (int j = 0; j < megoldasokTomb[i].Length; j++) // feladatok
                 {
                     if (megoldasokTomb[i][j] != null)
                     {
@@ -155,15 +156,16 @@ namespace HZWR41_FF
             BinarisKeresofa aktualisFeladatok = new BinarisKeresofa();
             for (int i = 0; i < feladatok.Length; i++)
             {
-                aktualisFeladatok.Beszuras(feladatok[i], feladatok[i].Prioritas);
+                if (feladatok[i] != null)
+                {
+                    aktualisFeladatok.Beszuras(feladatok[i], feladatok[i].Prioritas);
+                }
+
             }
 
             return aktualisFeladatok;
         }
-        public void NemBeutemezettFeladatok()
-        {
 
-        }
         public void FeladatVegrehajtas()
         {
             aktualisFeladatok.InorderBejaras(Elvegzes);

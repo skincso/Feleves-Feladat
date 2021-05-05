@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace HZWR41_FF.Feladatok
 {
-    class HDMI_IO : IOFeladat
+    public class HDMI_IO : IOFeladat
     {
-        public HDMI_IO(int prioritas, int idoigeny) : base(prioritas, idoigeny)
+        public HDMI_IO(int prioritas, int idoigeny, int hanySzimulaciosKorOtaEl) : base(prioritas, idoigeny, hanySzimulaciosKorOtaEl)
         {
+        }
+
+        public override event FeladatUtemezesKezelo FeladatBeutemezve;
+
+        public override void FeladatElvegzes()
+        {
+            FeladatBeutemezve?.Invoke($"HDMI IO feladat beütemezve, időigény: {Idoigeny}, prioritás: {Prioritas}, kor: {HanySzimulaciosKorOtaEl}");
+            Elvegezve = true;
         }
     }
 }

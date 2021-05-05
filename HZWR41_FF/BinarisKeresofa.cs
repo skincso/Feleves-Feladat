@@ -121,9 +121,12 @@ namespace HZWR41_FF
 
         void _InorderBejaras(FaElem aktualis, FeladatVegrehajtasKezelo metodus)
         {
-            _InorderBejaras(aktualis.bal, metodus);
-            metodus?.Invoke(aktualis.Tartalom);
-            _InorderBejaras(aktualis.jobb, metodus);
+            if (aktualis != null)
+            {
+                _InorderBejaras(aktualis.bal, metodus);
+                metodus?.Invoke(aktualis.Tartalom);
+                _InorderBejaras(aktualis.jobb, metodus);
+            }
         }
     }
 }

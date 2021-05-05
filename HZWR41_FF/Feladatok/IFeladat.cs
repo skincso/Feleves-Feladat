@@ -8,7 +8,7 @@ using HZWR41_FF;
 
 namespace HZWR41_FF.Feladatok
 {
-    public delegate void FeladatUtemezesKezelo(IFeladat feladat);
+    public delegate void FeladatUtemezesKezelo(string uzenet);
 
     public interface IFeladat
     {
