@@ -43,82 +43,10 @@ namespace HZWR41_FF
                 _Beszuras(ref p.jobb, tartalom, kulcs);
             }
         }
-        public IFeladat Kereses(int kulcs)
-        {
-            return _Kereses(gyoker, kulcs);
-        }
-        IFeladat _Kereses(FaElem p, int kulcs)
-        {
-            if (p != null)
-            {
-                if (p.Kulcs > kulcs)
-                {
-                    return _Kereses(p.bal, kulcs);
-                }
-                else if (p.Kulcs < kulcs)
-                {
-                    return _Kereses(p.jobb, kulcs);
-                }
-                else
-                {
-                    return p.Tartalom;
-                }
-            }
-            else
-            {
-                throw new ArgumentException("Nincs ilyen prioritasu elem");
-            }
-        }
-        public void Torles(int kulcs)
-        {
-            _Torles(ref gyoker, kulcs);
-        }
-        void _Torles(ref FaElem p, int kulcs)
-        {
-            if (p != null)
-            {
-                if (p.Kulcs > kulcs)
-                {
-                    _Torles(ref p.bal, kulcs);
-                }
-                else if (p.Kulcs < kulcs)
-                {
-                    _Torles(ref p.jobb, kulcs);
-                }
-                else if (p.bal == null)
-                {
-                    p = p.jobb;
-                }
-                else if (p.jobb == null)
-                {
-                    p = p.bal;
-                }
-                else _TorlesKetGyerek(p, ref p.bal);
-            }
-            else
-            {
-                throw new ArgumentException("Nincs ilyen prioritasu feladat");
-            }
-        }
-        void _TorlesKetGyerek(FaElem e, ref FaElem r) // e -> p, r -> p.bal
-        {
-            if (r.jobb != null)
-            {
-                _TorlesKetGyerek(e, ref r.jobb);
-            }
-            else
-            {
-                e.Tartalom = r.Tartalom;
-                e.Kulcs = r.Kulcs;
-                r = r.bal;
-            }
-        }
-
         public void InorderBejaras(FeladatVegrehajtasKezelo metodus)
         {
             _InorderBejaras(gyoker, metodus);
         }
-
         void _InorderBejaras(FaElem aktualis, FeladatVegrehajtasKezelo metodus)
         {
             if (aktualis != null)

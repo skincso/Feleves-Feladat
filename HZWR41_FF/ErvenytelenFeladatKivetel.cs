@@ -7,12 +7,10 @@ using HZWR41_FF.Feladatok;
 
 namespace HZWR41_FF
 {
-    class TulNagyFeladatKivetel : Exception
+    class ErvenytelenFeladatKivetel : Exception
     {
-        public IFeladat Feladat { get; }
-        public TulNagyFeladatKivetel(string message, IFeladat feladat) : base(message)
+        public ErvenytelenFeladatKivetel(string message) : base(message)
         {
-            Feladat = feladat;
         }
     }
 }

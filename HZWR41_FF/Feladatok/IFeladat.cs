@@ -8,7 +8,7 @@ using HZWR41_FF;
 
 namespace HZWR41_FF.Feladatok
 {
-    public delegate void FeladatUtemezesKezelo(string uzenet);
+    public delegate void FeladatUtemezesKezelo(int prioritas, int idoigeny, int kor);
 
     public interface IFeladat
     {
@@ -20,7 +20,6 @@ namespace HZWR41_FF.Feladatok
         event FeladatUtemezesKezelo FeladatBeutemezve;
 
         void FeladatElvegzes();
-
     }
 
 

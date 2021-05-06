@@ -12,6 +12,7 @@ namespace HZWR41_FF.Feladatok
         public int Idoigeny { get; }
         public bool Elvegezve { get; set; }
         public int HanySzimulaciosKorOtaEl { get; set; }
+        public bool Ervenyes { get; set; }
         public SzamitasiFeladat(int prioritas, int idoigeny, int hanySzimulaciosKorOtaEl)
         {
             Prioritas = prioritas;
@@ -24,7 +25,7 @@ namespace HZWR41_FF.Feladatok
 
         public void FeladatElvegzes()
         {
-            FeladatBeutemezve?.Invoke($"Számítási feladat beütemezve, időigény: {Idoigeny}, prioritás: {Prioritas}, kor: {HanySzimulaciosKorOtaEl}");
+            FeladatBeutemezve?.Invoke(Prioritas, Idoigeny, HanySzimulaciosKorOtaEl);
             Elvegezve = true;
         }
     }

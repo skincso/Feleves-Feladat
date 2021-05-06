@@ -7,17 +7,17 @@ using HZWR41_FF.Feladatok;
 
 namespace HZWR41_FF
 {
-    public delegate void SzimulacioVegeKezelo(string uzenet);
+    public delegate void SzimulacioVegeKezelo();
 
     class Szimulacio
     {
-        CPU cpu;
+        public CPU Cpu { get; }
         List<IFeladat> osszFeladatok;
         public event SzimulacioVegeKezelo SzimulacioVege;
 
-        public Szimulacio()
+        public Szimulacio(int cpuKapacitas)
         {
-            cpu = new CPU();
+            Cpu = new CPU(cpuKapacitas);
             osszFeladatok = new List<IFeladat>();
         }
 
@@ -28,61 +28,41 @@ namespace HZWR41_FF
             {
                 SzimulaciosKor();
             }
-            SzimulacioVege?.Invoke("A szimuláció véget ért.");
+            SzimulacioVege?.Invoke();
 
         }
-
         void SzimulaciosKor()
         {
             // cpu választ feladatokat
-            cpu.FeladatValasztas(osszFeladatok);
+            Cpu.FeladatValasztas(osszFeladatok);
 
             // cpu elvégzi a beütemezett feladatokat
-            cpu.FeladatVegrehajtas();
+            Cpu.FeladatVegrehajtas();
 
             // elvégzett feladatok törlése és hanyszimulacioskorotael++
             ElvegzettFeladatokKezelese();
         }
         void ElvegzettFeladatokKezelese()
         {
-            for (int i = 0; i < osszFeladatok.Count; i++)
+            List<IFeladat> torlendoFeladatok = new List<IFeladat>();
+
+            foreach (IFeladat feladat in osszFeladatok)
             {
-                if (osszFeladatok[i].Elvegezve == false)
+                if (feladat.Elvegezve == false)
                 {
-                    osszFeladatok[i].HanySzimulaciosKorOtaEl++;
+                    feladat.HanySzimulaciosKorOtaEl++;
                 }
                 else
                 {
-                    osszFeladatok[i] = null;
+                    torlendoFeladatok.Add(feladat);
                 }
             }
 
-            // hogyan töröljük a nullelemeket a listából?
-            ListaMasolas();
-        }
-        public void FeladatEllenorzes(List<IFeladat> feladatLista)
-        {
-            foreach (IFeladat feladat in feladatLista)
+            foreach (IFeladat feladat in torlendoFeladatok)
             {
-                if (feladat.Idoigeny > cpu.idokapacitas)
-                {
-                    throw new TulNagyFeladatKivetel("A feladat mérete meghaladja a CPU kapacitását", feladat);
-                }
+                osszFeladatok.Remove(feladat);
             }
         }
-
-        void ListaMasolas()
-        {
-            List<IFeladat> ujLista = new List<IFeladat>();
-            foreach (IFeladat feladat in osszFeladatok)
-            {
-                if (feladat != null)
-                {
-                    ujLista.Add(feladat);
-                }
-            }
-            osszFeladatok = ujLista;
-        }
-
+        
     }
 }

@@ -15,10 +15,9 @@ namespace HZWR41_FF
         BinarisKeresofa aktualisFeladatok; //adott korben elvegzendo, prioritas szerint rendezve
         public int Idokapacitas { get; }
 
-
-        public CPU()
+        public CPU(int idokapacitas)
         {
-            Idokapacitas = 10;
+            Idokapacitas = idokapacitas;
         }
 
         public void FeladatValasztas(List<IFeladat> feladatok)
@@ -32,18 +31,10 @@ namespace HZWR41_FF
 
             // a kiválasztott feladatokat bináris fává alakítjuk
             aktualisFeladatok = AktualisFeladatokBeszurasa(megoldasokTomb[megoldasIndex]);
-
-            // növeljük a hanyszimulacioskorotael változót azoknál a feladatoknál, amik nem lettek beütemezve
-
-
         }
-
-        void VisszalepesesKereses(int szint, IFeladat[] jelenlegiMegoldas, IFeladat[] feladatok, 
-            List<IFeladat[]> megoldasok) // szint 0-tól indexelve
+        void VisszalepesesKereses(int szint, IFeladat[] jelenlegiMegoldas, IFeladat[] feladatok, List<IFeladat[]> megoldasok) 
+            // szint 0-tól indexelve
         {
-            // elágazásnál új referencia létrehozása
-            // jelenlegiMegoldas tömb másolása -> ICloneable
-
             int i = -1;
             while (i < 1)
             {
@@ -91,7 +82,7 @@ namespace HZWR41_FF
         {
             // szabad kapacitás
 
-            int szabadKapacitas = idokapacitas;
+            int szabadKapacitas = Idokapacitas;
             for (int i = 0; i < szint; i++)
             {
                 if (jelenlegiMegoldas[i] != null)
@@ -160,12 +151,10 @@ namespace HZWR41_FF
                 {
                     aktualisFeladatok.Beszuras(feladatok[i], feladatok[i].Prioritas);
                 }
-
             }
 
             return aktualisFeladatok;
         }
-
         public void FeladatVegrehajtas()
         {
             aktualisFeladatok.InorderBejaras(Elvegzes);
